@@ -5,19 +5,19 @@ builder.Services.AddDbContext<CakesDb>(opt => opt.UseInMemoryDatabase("CakesList
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
-app.MapGet("/cakes", async (CakesDb db) => await db.Cake.ToListAsync());
+app.MapGet("/cakes", async (CakesDb db) => await db.Cakes.ToListAsync());
 
 app.MapGet(
     "/cakes/{id}",
     async (CakesDb db, int id) =>
-        await db.Cake.FindAsync(id) is Cake cake ? Results.Ok(cake) : Results.NotFound()
+        await db.Cakes.FindAsync(id) is Cake cake ? Results.Ok(cake) : Results.NotFound()
 );
 
 app.MapPost(
     "/cakes",
     async (CakesDb db, Cake cake) =>
     {
-        db.Cake.Add(cake);
+        db.Cakes.Add(cake);
         await db.SaveChangesAsync();
         return Results.Created($"/cakes/{cake.Id}", cake);
     }
@@ -42,13 +42,13 @@ app.MapDelete(
     "/cakes/{id}",
     async (CakesDb db, int id) =>
     {
-        var cake = await db.Cake.FindAsync(id);
+        var cake = await db.Cakes.FindAsync(id);
         if (cake is null)
         {
             return Results.NotFound();
         }
 
-        db.Cake.Remove(cake);
+        db.Cakes.Remove(cake);
         await db.SaveChangesAsync();
         return Results.Ok();
     }
