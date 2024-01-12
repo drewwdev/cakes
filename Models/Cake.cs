@@ -1,6 +1,6 @@
-public class Product
+public class Cake
 {
-    public int ProductId { get; set; }
+    public int CakeId { get; set; }
     public string? Name { get; set; }
     public string? Description { get; set; }
     public decimal Price { get; set; }
@@ -15,7 +15,7 @@ public class Product
 
     public List<string> Flavors { get; set; }
 
-    public Product()
+    public Cake()
     {
         Flavors = new List<string>();
         Name = null;
