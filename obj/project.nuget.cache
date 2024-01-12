@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "/zWzB+rOWjRmwswDO7NGNYwxFJkcscGBhQ+e/jGRqsCv7ttmSY98IOw5+zcwjJXPx8fWUT1M75N06j2gmY4lww==",
+  "success": true,
+  "projectFilePath": "/Users/drew/Projects/cakes/cakes.csproj",
+  "expectedPackageFiles": [
+    "/Users/drew/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/drew/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/Users/drew/.nuget/packages/npgsql/8.0.1/npgsql.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
