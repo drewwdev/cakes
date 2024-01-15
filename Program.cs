@@ -25,14 +25,14 @@ app.MapPost(
 
 app.MapPut(
     "/cakes/{id}",
-    async (CakesDb db, int id, Cake cake) =>
+    async (CakesDb db, int id, Cake updatedCake) =>
     {
-        if (id != cake.Id)
+        if (id != updatedCake.Id)
         {
             return Results.BadRequest();
         }
 
-        db.Entry(cake).State = EntityState.Modified;
+        db.Entry(updatedCake).State = EntityState.Modified;
         await db.SaveChangesAsync();
         return Results.Ok();
     }
@@ -74,14 +74,14 @@ app.MapPost(
 
 app.MapPut(
     "/orders/{id}",
-    async (CakesDb db, int id, Order order) =>
+    async (CakesDb db, int id, Order updatedOrder) =>
     {
-        if (id != order.Id)
+        if (id != updatedOrder.Id)
         {
             return Results.BadRequest();
         }
 
-        db.Entry(order).State = EntityState.Modified;
+        db.Entry(updatedOrder).State = EntityState.Modified;
         await db.SaveChangesAsync();
         return Results.Ok();
     }
@@ -125,14 +125,14 @@ app.MapPost(
 
 app.MapPut(
     "/orderitems/{id}",
-    async (CakesDb db, int id, OrderItem orderItem) =>
+    async (CakesDb db, int id, OrderItem updatedOrderItem) =>
     {
-        if (id != orderItem.Id)
+        if (id != updatedOrderItem.Id)
         {
             return Results.BadRequest();
         }
 
-        db.Entry(orderItem).State = EntityState.Modified;
+        db.Entry(updatedOrderItem).State = EntityState.Modified;
         await db.SaveChangesAsync();
         return Results.Ok();
     }
@@ -174,14 +174,14 @@ app.MapPost(
 
 app.MapPut(
     "/admins/{id}",
-    async (CakesDb db, int id, Admin admin) =>
+    async (CakesDb db, int id, Admin updatedAdmin) =>
     {
-        if (id != admin.Id)
+        if (id != updatedAdmin.Id)
         {
             return Results.BadRequest();
         }
 
-        db.Entry(admin).State = EntityState.Modified;
+        db.Entry(updatedAdmin).State = EntityState.Modified;
         await db.SaveChangesAsync();
         return Results.Ok();
     }
