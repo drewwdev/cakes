@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "dotenv.net/3.1.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/8.0.1": {
         "type": "package",
         "dependencies": {
@@ -285,10 +294,44 @@
             "related": ".xml"
           }
         }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.0",
+          "Npgsql": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "related": ".xml"
+          }
+        }
       }
     }
   },
   "libraries": {
+    "dotenv.net/3.1.3": {
+      "sha512": "gzksGrozUM/6OzBL2M99EINDLB5vhZScnRw5/oYaKx0O4PWusCBzzq9JCofhP8nL3uoli6V7SLmrwpF/PTj8XQ==",
+      "type": "package",
+      "path": "dotenv.net/3.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "dotenv.net.3.1.3.nupkg.sha512",
+        "dotenv.net.nuspec",
+        "lib/netstandard1.6/dotenv.net.dll",
+        "lib/netstandard2.0/dotenv.net.dll",
+        "lib/netstandard2.1/dotenv.net.dll"
+      ]
+    },
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/8.0.1": {
       "sha512": "Nf8yYeRNh/jKdG3Rl1AesthuK6cWG1WCa8ZpQM1f7+CewyWCS/6PDOfM3Z2hvSVbSTzVsz5odWrsBzZ7RCNTZg==",
       "type": "package",
@@ -733,6 +776,21 @@
         "npgsql.nuspec",
         "postgresql.png"
       ]
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.0": {
+      "sha512": "GDXiMS9peEdjSCU/rfgyHruio7q6tYuywGaktqEi6UPQ6ILechp3fVVX+dHXkIXt4nklCBzYVWkzFrSL9ubKUA==",
+      "type": "package",
+      "path": "npgsql.entityframeworkcore.postgresql/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
+        "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
+        "npgsql.entityframeworkcore.postgresql.8.0.0.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.nuspec",
+        "postgresql.png"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -740,7 +798,9 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.1",
       "Microsoft.EntityFrameworkCore >= 8.0.1",
       "Microsoft.EntityFrameworkCore.InMemory >= 8.0.1",
-      "Npgsql >= 8.0.1"
+      "Npgsql >= 8.0.1",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0",
+      "dotenv.net >= 3.1.3"
     ]
   },
   "packageFolders": {
@@ -795,6 +855,14 @@
           "Npgsql": {
             "target": "Package",
             "version": "[8.0.1, )"
+          },
+          "Npgsql.EntityFrameworkCore.PostgreSQL": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
+          "dotenv.net": {
+            "target": "Package",
+            "version": "[3.1.3, )"
           }
         },
         "imports": [

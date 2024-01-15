@@ -1,0 +1,7 @@
+# .gitignore
+
+# .env file
+.env
+
+# Visual Studio Code configuration files
+.vscode/

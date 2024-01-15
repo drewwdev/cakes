@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZZjAYNFVWrQQjKyHICWIpwQQ6r/NSalQLwn61IB6wbSq3kVuSCTbyaWsltc/hXuheBaZSjqYpp08fCtA/i5CNg==",
+  "dgSpecHash": "I39fBjjt7Ekv9yZ98+SRvDouyZaBCyXo30p1F58Okfu2mNySqRbXpHSBeEPJR5j9sUWWl0BtDoCACd/1PnBnTA==",
   "success": true,
   "projectFilePath": "/Users/drew/Projects/cakes/cakes.csproj",
   "expectedPackageFiles": [
+    "/Users/drew/.nuget/packages/dotenv.net/3.1.3/dotenv.net.3.1.3.nupkg.sha512",
     "/Users/drew/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/8.0.1/microsoft.aspnetcore.diagnostics.entityframeworkcore.8.0.1.nupkg.sha512",
     "/Users/drew/.nuget/packages/microsoft.entityframeworkcore/8.0.1/microsoft.entityframeworkcore.8.0.1.nupkg.sha512",
     "/Users/drew/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.1/microsoft.entityframeworkcore.abstractions.8.0.1.nupkg.sha512",
@@ -19,7 +20,8 @@
     "/Users/drew/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/Users/drew/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
     "/Users/drew/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "/Users/drew/.nuget/packages/npgsql/8.0.1/npgsql.8.0.1.nupkg.sha512"
+    "/Users/drew/.nuget/packages/npgsql/8.0.1/npgsql.8.0.1.nupkg.sha512",
+    "/Users/drew/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.0/npgsql.entityframeworkcore.postgresql.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }
