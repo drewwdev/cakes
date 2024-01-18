@@ -1,10 +1,11 @@
+import CakesList from "./components/CakesList";
 
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
+    <div>
+      <CakesList />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
