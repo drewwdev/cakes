@@ -1,9 +1,11 @@
-import CakesList from "./components/CakesList";
+import PostCakes from "./components/PostCakes";
+import GetCakes from "./components/GetCakes";
 
 function App() {
   return (
     <div>
-      <CakesList />
+      <PostCakes />
+      <GetCakes />
     </div>
   );
 }

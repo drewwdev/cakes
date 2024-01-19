@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { Cake } from "../types";
 
-const CakeList: React.FC = () => {
+const GetCakes: FC = () => {
   const [cakes, setCakes] = useState<Cake[]>([]);
 
   const fetchCakes = async () => {
@@ -35,4 +35,4 @@ const CakeList: React.FC = () => {
   );
 };
 
-export default CakeList;
+export default GetCakes;
