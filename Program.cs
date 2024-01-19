@@ -3,7 +3,21 @@ using Microsoft.EntityFrameworkCore;
 
 DotEnv.Load();
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+// This is what ended up fixing my cors issue
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader();
+        }
+    );
+});
 
 var connectionString =
     $"Host={Environment.GetEnvironmentVariable("DB_HOST")};"
@@ -19,6 +33,8 @@ builder.Services.AddDbContext<CakesDb>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.MapGet("/cakes", async (CakesDb db) => await db.Cakes.ToListAsync());
 

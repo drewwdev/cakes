@@ -4,27 +4,20 @@ import { Cake } from "../types";
 const CakeList: React.FC = () => {
   const [cakes, setCakes] = useState<Cake[]>([]);
 
-  useEffect(() => {
-    const fetchCakes = async () => {
-      try {
-        const response = await fetch("http://localhost:5194/cakes", {
-          mode: "no-cors",
-        });
+  const fetchCakes = async () => {
+    const res = await fetch("http://localhost:5194/cakes");
+    const data = await res.json();
+    return data;
+  };
 
-        if (response.ok) {
-          const cakesData: Cake[] = await response.json();
-          setCakes(cakesData);
-        } else {
-          console.error("Failed to fetch cakes:", response.statusText);
-          console.log(response);
-        }
-      } catch (error) {
-        console.error("Error fetching cakes:", error.message);
-      }
+  useEffect(() => {
+    const getCakes = async () => {
+      const cakesFromServer = await fetchCakes();
+      setCakes(cakesFromServer);
     };
 
-    fetchCakes();
-  }, []);
+    getCakes();
+  });
 
   return (
     <div>
