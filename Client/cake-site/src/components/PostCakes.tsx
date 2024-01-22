@@ -1,76 +1,67 @@
 import React, { useState } from "react";
 
 const PostCakes = () => {
-  const [cakeName, setCakeName] = useState("");
-  const [cakeDescription, setCakeDescription] = useState("");
-  const [cakePrice, setCakePrice] = useState(0);
-  const [cakeImage, setCakeImage] = useState("");
-  const [cakeFlavors, setCakeFlavors] = useState([]);
-  const [available, setAvailable] = useState(false);
+  const [cake, setCake] = useState({
+    name: "",
+    description: "",
+    price: 0,
+    image: "",
+    flavors: [],
+    available: false,
+  });
 
-  const handleCakeNameChange = (event) => {
-    setCakeName(event.target.value);
+  const {
+    name,
+    description,
+    price,
+    image: imageUrl,
+    flavors,
+    available: isAvailable,
+  } = cake;
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setCake({
+      ...cake,
+      [name]: name === "flavors" ? [value] : value,
+    });
   };
 
-  const handleCakeDescriptionChange = (event) => {
-    setCakeDescription(event.target.value);
-  };
-
-  const handleCakePriceChange = (event) => {
-    setCakePrice(event.target.value);
-  };
-
-  const handleCakeImageChange = (event) => {
-    setCakeImage(event.target.value);
+  const handleCheckboxChange = (event) => {
+    setCake({
+      ...cake,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   const handleCakeFlavorChange = (index, value) => {
-    const newArray = [...cakeFlavors];
-    newArray[index] = value;
-    setCakeFlavors(newArray);
-  };
-
-  const handleAvailableChange = (event) => {
-    setAvailable(event.target.checked);
+    const newFlavors = [...flavors];
+    newFlavors[index] = value;
+    setCake({
+      ...cake,
+      flavors: newFlavors,
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      !cakeName ||
-      !cakeFlavors ||
-      !cakePrice ||
-      !cakeDescription ||
-      !cakeImage
-    ) {
+    if (!name || flavors.length === 0 || !price || !description || !imageUrl) {
       console.error("Please fill in all required fields");
       return;
     }
 
     const jsonData = {
-      name: cakeName,
-      cakeFlavors: cakeFlavors,
-      price: cakePrice,
-      description: cakeDescription,
-      imageUrl: cakeImage,
-      isAvailable: available,
+      name: name,
+      flavors: flavors,
+      price: price,
+      description: description,
+      imageUrl: imageUrl,
+      isAvailable: isAvailable,
     };
 
-    console.log("JSON data to be sent:", jsonData);
-    console.log("Type of cakeFlavors:", Array.isArray(cakeFlavors));
-    const cleanedCakeFlavors = cakeFlavors.map((flavor) => flavor.trim());
-    console.log(
-      "JSON data to be sent:",
-      JSON.stringify({
-        name: cakeName,
-        cakeFlavors: cleanedCakeFlavors,
-        price: cakePrice,
-        description: cakeDescription,
-        imageUrl: cakeImage,
-        isAvailable: available,
-      })
-    );
+    const cleanedCakeFlavors = flavors.map((flavor) => flavor.trim());
 
     fetch("http://localhost:5194/cakes", {
       method: "POST",
@@ -78,12 +69,12 @@ const PostCakes = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: cakeName,
-        flavors: cleanedCakeFlavors,
-        price: cakePrice,
-        description: cakeDescription,
-        imageUrl: cakeImage,
-        isAvailable: available,
+        name: name,
+        flavors: flavors,
+        price: price,
+        description: description,
+        imageUrl: imageUrl,
+        isAvailable: isAvailable,
       }),
     })
       .then((response) => response.json())
@@ -101,15 +92,21 @@ const PostCakes = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Cake Name:
-          <input type="text" value={cakeName} onChange={handleCakeNameChange} />
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleInputChange}
+          />
         </label>
         <br />
         <label>
           Cake Description:
           <input
             type="text"
-            value={cakeDescription}
-            onChange={handleCakeDescriptionChange}
+            name="description"
+            value={description}
+            onChange={handleInputChange}
           />
         </label>
         <br />
@@ -117,8 +114,9 @@ const PostCakes = () => {
           Cake Price:
           <input
             type="number"
-            value={cakePrice}
-            onChange={handleCakePriceChange}
+            name="price"
+            value={price}
+            onChange={handleInputChange}
           />
         </label>
         <br />
@@ -126,24 +124,31 @@ const PostCakes = () => {
           Cake Image:
           <input
             type="text"
-            value={cakeImage}
-            onChange={handleCakeImageChange}
+            name="image"
+            value={imageUrl}
+            onChange={handleInputChange}
           />
         </label>
         <br />
         <label>
           Cake Flavors:
-          {cakeFlavors.map((input, index) => (
+          {flavors.map((input, index) => (
             <input
               key={index}
               type="text"
+              name={`flavors[${index}]`}
               value={input || ""}
               onChange={(e) => handleCakeFlavorChange(index, e.target.value)}
             />
           ))}
           <button
             type="button"
-            onClick={() => setCakeFlavors([...cakeFlavors, ""])}>
+            onClick={() =>
+              setCake((prevCake) => ({
+                ...prevCake,
+                flavors: [...flavors, ""],
+              }))
+            }>
             Add Input
           </button>
         </label>
@@ -153,8 +158,9 @@ const PostCakes = () => {
             Available:
             <input
               type="checkbox"
-              checked={available}
-              onChange={handleAvailableChange}
+              name="available"
+              checked={isAvailable}
+              onChange={handleCheckboxChange}
             />
           </label>
         </label>
