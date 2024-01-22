@@ -28,6 +28,8 @@ const GetCakes: FC = () => {
             <h3>{cake.name}</h3>
             <p>{cake.description}</p>
             <p>Price: ${cake.price}</p>
+            <p>Flavors: {cake.flavors.toString()}</p>
+            <p>Available: {cake.isAvailable.toString()}</p>
           </li>
         ))}
       </ul>

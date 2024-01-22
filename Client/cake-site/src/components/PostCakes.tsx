@@ -5,7 +5,7 @@ const PostCakes = () => {
   const [cakeDescription, setCakeDescription] = useState("");
   const [cakePrice, setCakePrice] = useState(0);
   const [cakeImage, setCakeImage] = useState("");
-  const [cakeFlavors, setCakeFlavors] = useState("");
+  const [cakeFlavors, setCakeFlavors] = useState([]);
   const [available, setAvailable] = useState(false);
 
   const handleCakeNameChange = (event) => {
@@ -24,8 +24,10 @@ const PostCakes = () => {
     setCakeImage(event.target.value);
   };
 
-  const handleCakeFlavorChange = (event) => {
-    setCakeFlavors(event.target.value);
+  const handleCakeFlavorChange = (index, value) => {
+    const newArray = [...cakeFlavors];
+    newArray[index] = value;
+    setCakeFlavors(newArray);
   };
 
   const handleAvailableChange = (event) => {
@@ -40,18 +42,15 @@ const PostCakes = () => {
       !cakeFlavors ||
       !cakePrice ||
       !cakeDescription ||
-      !cakeImage ||
-      !available
+      !cakeImage
     ) {
       console.error("Please fill in all required fields");
       return;
     }
 
-    const flavorsArray = cakeFlavors.split(",").map((flavor) => flavor.trim());
-
     const jsonData = {
       name: cakeName,
-      flavor: flavorsArray,
+      cakeFlavors: cakeFlavors,
       price: cakePrice,
       description: cakeDescription,
       imageUrl: cakeImage,
@@ -59,6 +58,19 @@ const PostCakes = () => {
     };
 
     console.log("JSON data to be sent:", jsonData);
+    console.log("Type of cakeFlavors:", Array.isArray(cakeFlavors));
+    const cleanedCakeFlavors = cakeFlavors.map((flavor) => flavor.trim());
+    console.log(
+      "JSON data to be sent:",
+      JSON.stringify({
+        name: cakeName,
+        cakeFlavors: cleanedCakeFlavors,
+        price: cakePrice,
+        description: cakeDescription,
+        imageUrl: cakeImage,
+        isAvailable: available,
+      })
+    );
 
     fetch("http://localhost:5194/cakes", {
       method: "POST",
@@ -67,7 +79,7 @@ const PostCakes = () => {
       },
       body: JSON.stringify({
         name: cakeName,
-        flavor: cakeFlavors,
+        flavors: cleanedCakeFlavors,
         price: cakePrice,
         description: cakeDescription,
         imageUrl: cakeImage,
@@ -121,11 +133,19 @@ const PostCakes = () => {
         <br />
         <label>
           Cake Flavors:
-          <input
-            type="text"
-            value={cakeFlavors}
-            onChange={handleCakeFlavorChange}
-          />
+          {cakeFlavors.map((input, index) => (
+            <input
+              key={index}
+              type="text"
+              value={input || ""}
+              onChange={(e) => handleCakeFlavorChange(index, e.target.value)}
+            />
+          ))}
+          <button
+            type="button"
+            onClick={() => setCakeFlavors([...cakeFlavors, ""])}>
+            Add Input
+          </button>
         </label>
         <br />
         <label>

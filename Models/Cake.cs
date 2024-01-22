@@ -6,7 +6,7 @@ public class Cake
     public decimal Price { get; set; }
     public string? ImageUrl { get; set; }
 
-    public enum AvalailableSizes
+    public enum AvailableSizes
     {
         Small,
         Medium,
