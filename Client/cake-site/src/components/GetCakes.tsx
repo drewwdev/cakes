@@ -10,6 +10,14 @@ const GetCakes: FC = () => {
     return data;
   };
 
+  const deleteCake = async (id: number) => {
+    await fetch(`http://localhost:5194/cakes/${id}`, {
+      method: "DELETE",
+    });
+
+    setCakes((prevCakes) => prevCakes.filter((cake) => cake.id !== id));
+  };
+
   useEffect(() => {
     const getCakes = async () => {
       const cakesFromServer = await fetchCakes();
@@ -30,6 +38,7 @@ const GetCakes: FC = () => {
             <p>Price: ${cake.price}</p>
             <p>Flavors: {cake.flavors.toString()}</p>
             <p>Available: {cake.isAvailable.toString()}</p>
+            <button onClick={() => deleteCake(cake.id)}>Delete Cake</button>
           </li>
         ))}
       </ul>
