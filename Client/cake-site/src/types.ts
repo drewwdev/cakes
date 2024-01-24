@@ -7,7 +7,6 @@ export interface Cake {
   availableSizes: string[];
   flavors: string[];
   isAvailable: boolean;
-  editable: boolean;
 }
 
 export interface OrderItem {

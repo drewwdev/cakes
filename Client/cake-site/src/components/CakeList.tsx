@@ -2,16 +2,18 @@ import React, { useEffect, useState, FC } from "react";
 import { Cake } from "../types";
 
 const GetCakes: FC = () => {
+  const localhostUrl = "http://localhost:5194/cakes";
+
   const [cakes, setCakes] = useState<Cake[]>([]);
 
   const fetchCakes = async () => {
-    const res = await fetch("http://localhost:5194/cakes");
+    const res = await fetch(localhostUrl);
     const data = await res.json();
     return data;
   };
 
   const deleteCake = async (id: number) => {
-    await fetch(`http://localhost:5194/cakes/${id}`, {
+    await fetch(`${localhostUrl}/${id}`, {
       method: "DELETE",
     });
 

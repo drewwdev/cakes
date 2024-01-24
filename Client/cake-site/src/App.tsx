@@ -1,11 +1,15 @@
 import PostCakes from "./components/PostCakes";
-import GetCakes from "./components/GetCakes";
+import CakeList from "./components/CakeList";
+import OrdersDashboard from "./components/OrdersDashboard";
+import OrderForm from "./components/OrderForm";
 
 function App() {
   return (
     <div>
       <PostCakes />
-      <GetCakes />
+      <CakeList />
+      <OrderForm />
+      <OrdersDashboard />
     </div>
   );
 }

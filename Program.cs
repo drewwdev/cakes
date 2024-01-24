@@ -50,7 +50,15 @@ app.MapPost(
     {
         db.Cakes.Add(cake);
         await db.SaveChangesAsync();
-        return Results.Created($"/cakes/{cake.Id}", cake);
+
+        var response = new
+        {
+            success = true,
+            message = "Cake added successfully.",
+            data = cake
+        };
+
+        return Results.Created($"/cakes/{cake.Id}", response);
     }
 );
 
