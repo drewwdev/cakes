@@ -45,7 +45,7 @@ app.MapGet(
 );
 
 app.MapPost(
-    "/cakes",
+    "/api/cakes",
     async (CakesDb db, Cake cake) =>
     {
         db.Cakes.Add(cake);

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const OrdersDashboard = () => {
   const [orders, setOrders] = useState([]);
+  const localhostUrl = "http://localhost:5194/orders";
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:5194/orders");
+        const response = await fetch(localhostUrl);
         const data = await response.json();
         setOrders(data);
       } catch (error) {

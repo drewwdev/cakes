@@ -5,9 +5,11 @@ const OrderForm = () => {
     customerName: "",
     customerEmail: "",
     customerPhone: "",
-    orderTotal: 0, // Initialize with a default value
-    orderDate: new Date().toISOString(), // Initialize with a default value
+    orderTotal: 0,
+    orderDate: new Date().toISOString(),
   });
+
+  const localhostUrl = "http://localhost:5194/orders";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +23,7 @@ const OrderForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5194/orders", {
+      const response = await fetch(localhostUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

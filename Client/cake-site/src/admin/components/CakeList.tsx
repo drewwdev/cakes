@@ -1,5 +1,15 @@
 import React, { useEffect, useState, FC } from "react";
-import { Cake } from "../types";
+
+interface Cake {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  availableSizes: string[];
+  flavors: string[];
+  isAvailable: boolean;
+}
 
 const GetCakes: FC = () => {
   const localhostUrl = "http://localhost:5194/cakes";
